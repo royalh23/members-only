@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/base.css" />
+  </head>
+  <body>
+    <main>
+      <h1><%= title %></h1>
+      <form action="/signup" method="POST">
+        <div>
+          <label for="firstName">First name: *</label>
+          <input type="text" name="firstName" id="firstName" required />
+        </div>
+        <div>
+          <label for="lastName">Last name: *</label>
+          <input type="text" name="lastName" id="lastName" required />
+        </div>
+        <div>
+          <label for="email">Email: *</label>
+          <input type="email" name="username" id="email" required />
+        </div>
+        <div>
+          <label for="password">Password: *</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            autocomplete="off"
+            required
+          />
+        </div>
+        <div>
+          <label for="confirmPassword">Confirm password: *</label>
+          <input
+            type="password"
+            name="confirmPassword"
+            id="confirmPassword"
+            autocomplete="off"
+            required
+          />
+        </div>
+        <button type="submit">Sign up</button>
+      </form>
+      <p>Have an account? <a href="/login">Log in here</a></p>
+    </main>
+  </body>
+</html>
