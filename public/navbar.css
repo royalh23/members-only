@@ -1,0 +1,15 @@
+.navbar-list {
+  display: flex;
+  justify-content: end;
+  gap: 20px;
+  list-style-type: none;
+}
+
+.navbar-list a {
+  text-decoration: none;
+  color: black;
+}
+
+.navbar-list a:hover {
+  color: rgb(0, 106, 255);
+}

@@ -3,8 +3,12 @@ const session = require('express-session');
 const passport = require('passport');
 const pool = require('./configs/db/pool');
 const pgSession = require('connect-pg-simple')(session);
-const indexRouter = require('./routes/indexRouter');
+
+const messagesRouter = require('./routes/messagesRouter');
+const loginRouter = require('./routes/loginRouter');
 const signupRouter = require('./routes/signupRouter');
+const indexRouter = require('./routes/indexRouter');
+
 const app = express();
 
 require('dotenv').config();
@@ -28,11 +32,11 @@ app.use(
 );
 app.use(passport.session());
 
+app.use('/messages', messagesRouter);
+app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
 app.use('/', indexRouter);
-app.get('*', (req, res) => {
-  res.status(404).send('<h1>Page not found</h1>');
-});
+app.get('*', (req, res) => res.status(404).send('<h1>Page not found</h1>'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

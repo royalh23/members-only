@@ -1,5 +1,5 @@
 const getIndex = (req, res) => {
-  res.redirect('/signup');
+  res.redirect('/messages');
 };
 
 module.exports = { getIndex };
