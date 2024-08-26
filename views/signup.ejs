@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title %></title>
     <link rel="stylesheet" href="/base.css" />
+    <link rel="stylesheet" href="/error.css">
   </head>
   <body>
     <main>
@@ -14,14 +15,23 @@
           <label for="firstName">First name: *</label>
           <input type="text" name="firstName" id="firstName" required />
         </div>
+        <% if (locals.errors && errors.find((error) => error.path === 'firstName')) { %>
+          <p class="error"><%= errors.find((error) => error.path === 'firstName').msg; %></p>
+        <% } %>
         <div>
           <label for="lastName">Last name: *</label>
           <input type="text" name="lastName" id="lastName" required />
         </div>
+        <% if (locals.errors && errors.find((error) => error.path === 'lastName')) { %>
+          <p class="error"><%= errors.find((error) => error.path === 'lastName').msg; %></p>
+        <% } %>
         <div>
           <label for="email">Email: *</label>
           <input type="email" name="username" id="email" required />
         </div>
+        <% if (locals.errors && errors.find((error) => error.path === 'username')) { %>
+          <p class="error"><%= errors.find((error) => error.path === 'username').msg; %></p>
+        <% } %>
         <div>
           <label for="password">Password: *</label>
           <input
@@ -32,6 +42,9 @@
             required
           />
         </div>
+        <% if (locals.errors && errors.find((error) => error.path === 'password')) { %>
+          <p class="error"><%= errors.find((error) => error.path === 'password').msg; %></p>
+        <% } %>
         <div>
           <label for="confirmPassword">Confirm password: *</label>
           <input
@@ -42,6 +55,9 @@
             required
           />
         </div>
+        <% if (locals.errors && errors.find((error) => error.path === 'confirmPassword')) { %>
+          <p class="error"><%= errors.find((error) => error.path === 'confirmPassword').msg; %></p>
+        <% } %>
         <button type="submit">Sign up</button>
       </form>
       <p>Have an account? <a href="/login">Log in here</a></p>

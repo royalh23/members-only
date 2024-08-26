@@ -1,6 +1,8 @@
 <nav>
   <ul class="navbar-list">
     <% if (user) { %>
+      <li><a href="/admin">Admin pass-code</a></li>
+      <li><a href="/member">Member pass-code</a></li>
       <li><a href="/logout">Log out</a></li>
     <% } else { %>
       <li><a href="/signup">Sign up</a></li>
