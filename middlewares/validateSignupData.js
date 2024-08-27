@@ -21,10 +21,9 @@ module.exports = [
     .isEmail()
     .withMessage('Email address must be valid')
     .custom(async (value) => {
-      const user = await db.findUserByEmail(value);
+      const user = await db.getUserByEmail(value);
       if (user) throw new Error('Email is already in use');
-    })
-    .withMessage('Email is already in use'),
+    }),
   body('password')
     .trim()
     .notEmpty()

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title %>></title>
     <link rel="stylesheet" href="/base.css" />
+    <link rel="stylesheet" href="/error.css">
   </head>
   <body>
     <main>
@@ -14,12 +15,21 @@
           <label for="email">Email: *</label>
           <input type="email" name="username" id="email" required />
         </div>
+        <% if (locals.errors && errors.find(error => error.path === 'username')) { %>
+          <p class="error"><%= errors.find(error => error.path === 'username').msg %></p>
+        <% } %>
         <div>
           <label for="password">Password: *</label>
           <input type="password" name="password" id="password" required />
         </div>
+        <% if (locals.errors && errors.find(error => error.path === 'password')) { %>
+          <p class="error"><%= errors.find(error => error.path === 'password').msg %></p>
+        <% } %>
         <button type="submit">Log in</button>
       </form>
+      <% if (authMessages) { %>
+        <p class="error"><%= authMessages[authMessages.length - 1] %></p>
+      <% } %>
       <p>Don&#39;t have an account? <a href="/signup">Create one here</a></p>
       <p><a href="/">Home</a></p>
     </main>

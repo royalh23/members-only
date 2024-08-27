@@ -5,6 +5,7 @@ const db = require('../configs/db/queries');
 const { validationResult } = require('express-validator');
 
 const getSignup = (req, res) => {
+  if (req.isAuthenticated()) return res.redirect('/');
   res.render('signup', { title: 'Sign up' });
 };
 

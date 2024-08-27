@@ -6,6 +6,7 @@ const pgSession = require('connect-pg-simple')(session);
 
 const messagesRouter = require('./routes/messagesRouter');
 const loginRouter = require('./routes/loginRouter');
+const logoutRouter = require('./routes/logoutRouter');
 const signupRouter = require('./routes/signupRouter');
 const indexRouter = require('./routes/indexRouter');
 
@@ -30,10 +31,12 @@ app.use(
     },
   }),
 );
+require('./configs/passport/passport');
 app.use(passport.session());
 
 app.use('/messages', messagesRouter);
 app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
 app.use('/signup', signupRouter);
 app.use('/', indexRouter);
 app.get('*', (req, res) => res.status(404).send('<h1>Page not found</h1>'));
