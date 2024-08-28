@@ -26,8 +26,14 @@ const addUser = async (firstName, lastName, email, password) => {
   );
 };
 
-const getAllMessages = async () => {
-  const { rows } = await pool.query('SELECT * FROM messages');
+const getAllMessagesWithUser = async () => {
+  const SQL = `
+  SELECT messages.id, messages.title, messages.text, messages.timestamp, users.first_name
+  FROM messages
+  INNER JOIN users
+  ON messages.user_id = users.id;
+  `;
+  const { rows } = await pool.query(SQL);
   return rows;
 };
 
@@ -43,6 +49,6 @@ module.exports = {
   getUserByUsername,
   getUserById,
   addUser,
-  getAllMessages,
+  getAllMessagesWithUser,
   addMessage,
 };

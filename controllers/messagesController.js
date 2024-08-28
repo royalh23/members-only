@@ -4,7 +4,7 @@ const validateMessageData = require('../middlewares/validateMessageData');
 const { validationResult } = require('express-validator');
 
 const getMessages = asyncHandler(async (req, res) => {
-  const messages = await db.getAllMessages();
+  const messages = await db.getAllMessagesWithUser();
   res.render('messages', { title: 'Messages', user: req.user, messages });
 });
 

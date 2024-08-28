@@ -6,6 +6,7 @@
     <title><%= title %></title>
     <link rel="stylesheet" href="/base.css">
     <link rel="stylesheet" href="/navbar.css">
+    <link rel="stylesheet" href="/messages.css">
   </head>
   <body>
     <%- include('partial/navbar', { user }) %>
@@ -14,6 +15,21 @@
       <div>
         <% if (messages.length === 0) { %>
           <p>No messages to show</p>
+        <% } else { %>
+          <% messages.forEach(msg => { %>
+            <div class="message">
+              <h2><%= msg.title %></h2>
+              <p><%= msg.text %></p>
+              <% if (!user || user.role === 'non-member') { %>
+                <div class="italic">Anonymous</div>
+              <% } else if (user && user.role === 'member' || user.role === 'admin'){ %>
+                <div class="italic"><%= msg['first_name']%>, <%= msg.timestamp %></div>
+              <% } %>
+              <% if (user && user.role === 'admin') { %>
+                <a href="/messages/delete">Delete</a>
+              <% } %>
+            </div>
+          <% }) ;%>
         <% } %>
       </div>
       <% if (user) { %>

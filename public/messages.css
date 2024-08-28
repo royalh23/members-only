@@ -1,0 +1,9 @@
+.message {
+  margin: 20px 0;
+  padding: 10px;
+  border: 2px solid black;
+}
+
+.italic {
+  font-style: italic;
+}
