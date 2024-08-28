@@ -26,7 +26,7 @@
                 <div class="italic"><%= msg['first_name']%>, <%= msg.timestamp %></div>
               <% } %>
               <% if (user && user.role === 'admin') { %>
-                <a href="/messages/delete">Delete</a>
+                <a href="/messages/<%= msg.id %>/delete">Delete</a>
               <% } %>
             </div>
           <% }) ;%>

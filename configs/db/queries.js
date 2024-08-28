@@ -52,6 +52,10 @@ const updateToAdmin = async (userId) => {
   await pool.query("UPDATE users SET role = 'admin' WHERE id = $1", [userId]);
 };
 
+const deleteMessageById = async (messageId) => {
+  await pool.query('DELETE FROM messages WHERE id = $1', [messageId]);
+};
+
 module.exports = {
   getUserByEmail,
   getUserByUsername,
@@ -61,4 +65,5 @@ module.exports = {
   addMessage,
   updateToMember,
   updateToAdmin,
+  deleteMessageById,
 };

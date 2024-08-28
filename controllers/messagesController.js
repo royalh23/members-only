@@ -29,4 +29,15 @@ const addMessagePost = [
   }),
 ];
 
-module.exports = { getMessages, addMessageGet, addMessagePost };
+const deleteMessage = asyncHandler(async (req, res) => {
+  const { messageId } = req.params;
+  await db.deleteMessageById(messageId);
+  res.redirect('/');
+});
+
+module.exports = {
+  getMessages,
+  addMessageGet,
+  addMessagePost,
+  deleteMessage,
+};
