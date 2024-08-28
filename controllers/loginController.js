@@ -15,7 +15,11 @@ const postLogin = [
     if (!result.isEmpty()) {
       return res
         .status(400)
-        .render('login', { title: 'Log in', errors: result.array() });
+        .render('login', {
+          title: 'Log in',
+          errors: result.array(),
+          authMessages: req.session.messages,
+        });
     }
 
     next();

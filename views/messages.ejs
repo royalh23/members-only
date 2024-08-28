@@ -11,6 +11,16 @@
     <%- include('partial/navbar', { user }) %>
     <main>
       <h1><%= title %></h1>
+      <div>
+        <% if (messages.length === 0) { %>
+          <p>No messages to show</p>
+        <% } %>
+      </div>
+      <% if (user) { %>
+        <a href="/messages/new-message">Create a new message</a>
+      <% } else { %>
+        <p><a href="/login">Log in</a> to create a new message</p>
+      <% } %>
     </main>
   </body>
 </html>

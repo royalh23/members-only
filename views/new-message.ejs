@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %>></title>
+    <link rel="stylesheet" href="/base.css">
+    <link rel="stylesheet" href="/navbar.css">
+    <link rel="stylesheet" href="/error.css">
+  </head>
+  <body>
+    <%- include('partial/navbar', { user }) %>
+    <main>
+      <% if (user) { %>
+        <h1><%= title %></h1>
+        <form action="new-message" method="POST">
+          <div>
+            <label for="title">Title: *</label>
+            <input type="text" name="title" id="title" required>
+          </div>
+          <% if (locals.errors && errors.find(error => error.path === 'title')) { %>
+            <p class="error"><%= errors.find(error => error.path === 'title').msg %></p>
+          <% } %>
+          <div>
+            <label for="text">Text: *</label>
+            <textarea name="text" id="text" required></textarea>
+          </div>
+          <% if (locals.errors && errors.find(error => error.path === 'text')) { %>
+            <p class="error"><%= errors.find(error => error.path === 'text').msg %></p>
+          <% } %>
+          <button type="submit">Add</button>
+        </form>
+      <% } else { %>
+        <p><a href="/login">Log in</a> to access this page</p>
+      <% } %>
+      <p><a href="/">Home</a></p>
+    </main>
+  </body>
+</html>
