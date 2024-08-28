@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %>></title>
+    <link rel="stylesheet" href="/base.css" />
+    <link rel="stylesheet" href="/navbar.css" />
+    <link rel="stylesheet" href="/error.css" />
+  </head>
+  <body>
+    <%- include('partial/navbar', { user }) %>
+    <main>
+      <h1><%= title %></h1>
+      <% if (!user) { %>
+        <p><a href="/login">Log in</a> to view this page</p>
+      <% } else if (user.role !== 'member' && user.role !== 'admin') { %>
+        <form action="/member" method="POST">
+          <div>
+            <label for="memberPasscode">Enter the member pass-code to become a member and view each message&apos;s author and timestamp: *</label>
+            <input type="password" name="memberPasscode" id="memberPasscode" required>
+          </div>
+          <% if (locals.errors) { %>
+            <p class="error"><%= errors[0].msg %></p>
+          <% } %>
+          <button type="submit">Enter the passcode</button>
+        </form>
+      <% } else { %>
+        <p>You are already authorized as either a member or an admin</p>
+        <p><a href="/">Home</a></p>
+      <% } %>
+    </main>
+  </body>
+</html>

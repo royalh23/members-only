@@ -44,6 +44,10 @@ const addMessage = async (title, text, userId) => {
   );
 };
 
+const updateToMember = async (userId) => {
+  await pool.query("UPDATE users SET role = 'member' WHERE id = $1", [userId]);
+};
+
 module.exports = {
   getUserByEmail,
   getUserByUsername,
@@ -51,4 +55,5 @@ module.exports = {
   addUser,
   getAllMessagesWithUser,
   addMessage,
+  updateToMember,
 };
