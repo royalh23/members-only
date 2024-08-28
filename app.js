@@ -4,6 +4,7 @@ const passport = require('passport');
 const pool = require('./configs/db/pool');
 const pgSession = require('connect-pg-simple')(session);
 
+const adminRouter = require('./routes/adminRouter');
 const memberRouter = require('./routes/memberRouter');
 const messagesRouter = require('./routes/messagesRouter');
 const loginRouter = require('./routes/loginRouter');
@@ -35,6 +36,7 @@ app.use(
 require('./configs/passport/passport');
 app.use(passport.session());
 
+app.use('/admin', adminRouter);
 app.use('/member', memberRouter);
 app.use('/messages', messagesRouter);
 app.use('/login', loginRouter);

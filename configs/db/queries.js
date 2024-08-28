@@ -48,6 +48,10 @@ const updateToMember = async (userId) => {
   await pool.query("UPDATE users SET role = 'member' WHERE id = $1", [userId]);
 };
 
+const updateToAdmin = async (userId) => {
+  await pool.query("UPDATE users SET role = 'admin' WHERE id = $1", [userId]);
+};
+
 module.exports = {
   getUserByEmail,
   getUserByUsername,
@@ -55,5 +59,5 @@ module.exports = {
   addUser,
   getAllMessagesWithUser,
   addMessage,
-  updateToMember,
+  updateToAdmin,
 };

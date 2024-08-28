@@ -14,20 +14,17 @@
       <h1><%= title %></h1>
       <% if (!user) { %>
         <p><a href="/login">Log in</a> to view this page</p>
-      <% } else if (user.role === 'non-member') { %>
-        <form action="/member" method="POST">
+      <% } else if (user.role === 'non-member' || user.role === 'member') { %>
+        <form action="/admin" method="POST">
           <div>
-            <label for="memberPasscode">Enter the member pass-code to become a member and view each message&apos;s author and timestamp: *</label>
-            <input type="password" name="memberPasscode" id="memberPasscode" required>
+            <label for="adminPasscode">Enter the admin pass-code to become an admin, view each message&apos;s author and timestamp, and delete messages: *</label>
+            <input type="password" name="adminPasscode" id="adminPasscode" required>
           </div>
           <% if (locals.errors) { %>
             <p class="error"><%= errors[0].msg %></p>
           <% } %>
           <button type="submit">Enter the passcode</button>
         </form>
-      <% } else if (user.role === 'member'){ %>
-        <p>You are already authorized as a member</p>
-        <p><a href="/">Home</a></p>
       <% } else { %>
         <p>You are already authorized as an admin</p>
         <p><a href="/">Home</a></p>
