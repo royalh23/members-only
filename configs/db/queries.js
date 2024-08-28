@@ -59,5 +59,6 @@ module.exports = {
   addUser,
   getAllMessagesWithUser,
   addMessage,
+  updateToMember,
   updateToAdmin,
 };
