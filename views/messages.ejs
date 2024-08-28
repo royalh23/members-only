@@ -26,7 +26,9 @@
                 <div class="italic"><%= msg['first_name']%>, <%= msg.timestamp %></div>
               <% } %>
               <% if (user && user.role === 'admin') { %>
-                <a href="/messages/<%= msg.id %>/delete">Delete</a>
+                <form action="/messages/<%= msg.id %>/delete" method="GET">
+                  <button type="submit" class="delete-btn">Delete</button>
+                </form>
               <% } %>
             </div>
           <% }) ;%>

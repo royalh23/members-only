@@ -7,3 +7,14 @@
 .italic {
   font-style: italic;
 }
+
+.delete-btn {
+  cursor: pointer;
+  font-size: 1rem;
+  border: 0;
+  border-radius: 10px;
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  margin-top: 15px;
+}
