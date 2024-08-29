@@ -43,7 +43,18 @@ app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
 app.use('/signup', signupRouter);
 app.use('/', indexRouter);
-app.get('*', (req, res) => res.status(404).send('<h1>Page not found</h1>'));
+app.get('*', (req, res) =>
+  res.status(404).send(
+    '<h1>Page not found</h1>\
+     <p><a href="/">Return home</a></p>',
+  ),
+);
+app.use((err, req, res, next) =>
+  res.status(500).send(
+    '<h1>Internal Server Error (HTTP status: 500)</h1>\
+     <p><a href="/">Return home</a></p>',
+  ),
+);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
